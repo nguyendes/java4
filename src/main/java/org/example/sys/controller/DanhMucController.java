@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.sys.domain.entity.DanhMuc;
-import org.example.sys.domain.repository.impl.DanhMucRepoImpl;
+import org.example.sys.repository.impl.DanhMucRepoImpl;
 
 import java.io.IOException;
 import java.util.Date;

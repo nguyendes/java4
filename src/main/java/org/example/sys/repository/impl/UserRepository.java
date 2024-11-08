@@ -1,4 +1,4 @@
-package org.example.sys.domain.repository.impl;
+package org.example.sys.repository.impl;
 
 
 import org.example.sys.domain.entity.User;

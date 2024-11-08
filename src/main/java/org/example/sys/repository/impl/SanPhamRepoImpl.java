@@ -1,8 +1,9 @@
-package org.example.sys.domain.repository.impl;
+package org.example.sys.repository.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.sys.domain.repository.SPDMRepo;
-import org.example.sys.domain.repository.SanPhamRepo;
+import org.example.message.EmailQueueProducer;
+import org.example.sys.repository.SPDMRepo;
+import org.example.sys.repository.SanPhamRepo;
 import org.example.sys.domain.dto.SanPhamDTO;
 import org.example.sys.domain.entity.SanPham;
 import org.example.config.utils.HibernateUtil;
@@ -43,18 +44,30 @@ public class SanPhamRepoImpl implements SanPhamRepo, SPDMRepo {
     @Override
     public SanPham save(SanPham sanPham) {
         Transaction tx = null;
-        try(Session session= HibernateUtil.getSessionFactory().openSession()){
-            tx= session.beginTransaction();
+        EmailQueueProducer emailQueueProducer = new EmailQueueProducer(); // Di chuyển lên đầu để sử dụng sau
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
             session.save(sanPham);
             tx.commit();
-        }catch (HibernateException e){
+
+            String email = "nguyedes9999@gmail.com";
+            String subject = "New Product Added";
+            String body = "A new product has been added: " + sanPham.getTenSanPham();
+            emailQueueProducer.sendEmailToQueue(email, subject, body);
+
+        } catch (HibernateException e) {
             log.error(e.getMessage());
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return sanPham;
     }
+
 
     @Override
     public boolean update(SanPham sanPham) {

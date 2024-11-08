@@ -9,8 +9,8 @@ import org.example.sys.domain.dto.SanPhamDTO;
 import org.example.sys.domain.entity.SanPham;
 import org.example.sys.domain.entity.DanhMuc;
 import org.example.sys.domain.entity.User;
-import org.example.sys.domain.repository.impl.SanPhamRepoImpl;
-import org.example.sys.domain.repository.impl.DanhMucRepoImpl;
+import org.example.sys.repository.impl.SanPhamRepoImpl;
+import org.example.sys.repository.impl.DanhMucRepoImpl;
 
 import java.io.IOException;
 import java.util.Date;
@@ -108,7 +108,7 @@ public class SanPhamController extends HttpServlet {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
 
         if (currentUser == null) {
-            resp.sendRedirect("login.jsp");
+            resp.sendRedirect("/login");
             return;
         }
 

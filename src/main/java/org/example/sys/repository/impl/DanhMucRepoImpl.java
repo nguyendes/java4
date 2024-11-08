@@ -1,9 +1,9 @@
-package org.example.sys.domain.repository.impl;
+package org.example.sys.repository.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.sys.domain.entity.DanhMuc;
 import org.example.config.utils.HibernateUtil;
-import org.example.sys.domain.repository.DanhMucRepo;
+import org.example.sys.repository.DanhMucRepo;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

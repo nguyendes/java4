@@ -1,4 +1,4 @@
-package org.example.sys.domain.repository;
+package org.example.sys.repository;
 
 import org.example.sys.domain.dto.SanPhamDTO;
 

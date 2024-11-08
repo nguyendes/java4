@@ -4,6 +4,10 @@
 <html>
 <head>
     <title>Danh sách Sản Phẩm</title>
+    <!-- Logout Button -->
+    <a href="/logout" style="float: right; margin-top: 10px;">
+        <button type="button">Đăng Xuất</button>
+    </a>
 </head>
 <body>
 <% if (request.getAttribute("errorMessage") != null) { %>
